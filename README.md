@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Supply Chain DApp
+A full-stack decentralized application (DApp) for supply chain management.
 
-## Getting Started
+<div align="center">
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+  <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white" />
+  <img src="https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white" />
+  <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white" />
+  <img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" />
+  <img src="https://img.shields.io/badge/web3.js-F16822?style=for-the-badge&logo=web3.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" />
+  <img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white" />
+</div>
 
-First, run the development server:
+### 🔐 Login
+<img src="./login.png" width="128"/>
 
+### 📊 Dashboard
+<img src="./dashboard.png" width="128"/>
+
+### 📊 Table
+<img src="./supplies.png" width="128"/>
+
+
+# 🚀 Setup Instructions
+
+### 1️⃣ Backend (NestJS)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd nestjs
+nvm use 20
+npm install
+npm run start:dev
+http://localhost:3001
+```
+### .env
+```php
+PORT=3001
+JWT_SECRET=your_jwt_secret
+WEB3_PROVIDER=http://localhost:8545
+CONTRACT_ADDRESS=deployed_contract_address_here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2️⃣ Frontend (NextJS)
+```bash
+cd nextjs
+nvm use 20
+npm install
+npm run dev0
+http://localhost:3000
+```
+### .env
+```php
+NEXT_PUBLIC_API_URL=http://localhost:3000
+NEXT_PUBLIC_WEB3_PROVIDER=http://localhost:8545
+NEXT_PUBLIC_CONTRACT_ADDRESS=deployed_contract_address_here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Smart Contracts (Hardhat)
+```bash
+cd smart-contracts
+nvm use 20
+npm install
 
-## Learn More
+npx hardhat compile
+npx hardhat run scripts/deploy.ts --network localhost
 
-To learn more about Next.js, take a look at the following resources:
+npx hardhat test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run servers
+```bash
+cd smart-contracts
+npx hardhat node
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+brew services start redis
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Features
+✅ JWT-based authentication
+✅ Next.js + MUI 5 UI  
+✅ Web3.js + Ethers.js integration to interact with smart contracts  
+✅ Modular backend (NestJS v11) and frontend (Next.js 14 App Router)  
+✅ Solidity smart contracts with event emitters for off-chain listening  
+✅ Fully unit tested smart contracts (Hardhat + Mocha + Chai)  
+✅ Scalable Redis caching layer to reduce blockchain reads and improve performance  
+✅ Loading states, optimistic UI, and user-friendly error handling in frontend  
+✅ Clean architecture ready for scaling to testnet/mainnet  
