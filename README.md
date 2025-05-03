@@ -16,13 +16,13 @@ A full-stack decentralized application (DApp) for supply chain management.
 </div>
 
 ### 🔐 Login
-<img src="./login.png" width="128"/>
+<img src="./login.png" />
 
 ### 📊 Dashboard
-<img src="./dashboard.png" width="128"/>
+<img src="./dashboard.png" />
 
 ### 📊 Table
-<img src="./supplies.png" width="128"/>
+<img src="./supplies.png" />
 
 
 # 🚀 Setup Instructions
