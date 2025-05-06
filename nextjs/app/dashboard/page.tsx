@@ -6,16 +6,18 @@ import {
   Button,
   Typography,
   Alert,
-  CircularProgress
+  CircularProgress,
+  Stack,
+  Chip
 } from '@mui/material';
 import SuppliesTable from '../components/SuppliesTable';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 type Supply = {
   name: string;
   description: string;
   quantity: string;
   provider: string;
-  addedBy: string;
   state: string;
 };
 
@@ -24,7 +26,28 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [supplies, setSupplies] = useState<Supply[]>([]);
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const router = useRouter();
+
+  const checkWalletConnection = async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length > 0) {
+        setWalletAddress(accounts[0]);
+      }
+    } else {
+      setError('MetaMask not detected');
+    }
+  };
+
+  const connectWallet = async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      setWalletAddress(accounts[0]);
+    } else {
+      setError('MetaMask not detected');
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -55,6 +78,8 @@ export default function DashboardPage() {
         router.push('/login');
       })
       .finally(() => setLoading(false));
+
+    checkWalletConnection();
   }, []);
 
   const fetchSupplies = (token: string) => {
@@ -75,10 +100,13 @@ export default function DashboardPage() {
     description: string;
     quantity: number;
     provider: string;
-    addedBy: string;
   }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
+    if (!walletAddress) {
+      setError('Connect your MetaMask wallet first');
+      return;
+    }
 
     const res = await fetch('http://localhost:3001/supply/add', {
       method: 'POST',
@@ -86,7 +114,7 @@ export default function DashboardPage() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify(supplyData)
+      body: JSON.stringify({ ...supplyData, addedBy: walletAddress })
     });
 
     if (!res.ok) throw new Error('Failed to add supply');
@@ -105,13 +133,33 @@ export default function DashboardPage() {
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
+      <Stack direction="row" justifyContent="center" spacing={2} mb={2}>
+        {!walletAddress ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<AccountBalanceWalletIcon />}
+            onClick={connectWallet}
+          >
+            Connect MetaMask
+          </Button>
+        ) : (
+          <Chip
+            icon={<AccountBalanceWalletIcon />}
+            label={`Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`}
+            color="success"
+            variant="outlined"
+          />
+        )}
+      </Stack>
+
       {loading && <CircularProgress />}
       {!loading && (
         <>
           {message && <Alert severity="success">{message}</Alert>}
           {error && <Alert severity="error">{error}</Alert>}
 
-          <SuppliesTable supplies={supplies} onAdd={addSupply} />
+          <SuppliesTable walletAddress={walletAddress} supplies={supplies} onAdd={addSupply} />
 
           <Button
             variant="contained"

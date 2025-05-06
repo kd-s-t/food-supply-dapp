@@ -9,14 +9,14 @@ contract SupplyChain {
         string description;
         uint256 quantity;
         string provider;
-        string addedBy;
+        address addedBy;
         SupplyState state;
     }
 
     address public owner;
     Supply[] public supplies;
 
-    event SupplyAdded(string name, string provider, string addedBy);
+    event SupplyAdded(string name, string provider, address addedBy);
     event SupplyStateUpdated(uint256 index, SupplyState newState);
 
     modifier onlyOwner() {
@@ -32,24 +32,31 @@ contract SupplyChain {
         string memory _name,
         string memory _description,
         uint256 _quantity,
-        string memory _provider,
-        string memory _addedBy
+        string memory _provider
     ) public onlyOwner {
+        // 🔒 Input validations
+        require(bytes(_name).length > 0, "Name cannot be empty");
+        require(bytes(_description).length > 0, "Description cannot be empty");
+        require(_quantity > 0, "Quantity must be greater than zero");
+        require(bytes(_provider).length > 0, "Provider cannot be empty");
+
         supplies.push(
             Supply(
                 _name,
                 _description,
                 _quantity,
                 _provider,
-                _addedBy,
+                tx.origin, // capture the original wallet calling the backend
                 SupplyState.Created
             )
         );
-        emit SupplyAdded(_name, _provider, _addedBy);
+        emit SupplyAdded(_name, _provider, tx.origin);
     }
 
     function updateSupplyState(uint256 index, uint8 newState) public onlyOwner {
         require(index < supplies.length, "Invalid index");
+        require(newState <= uint8(SupplyState.Delivered), "Invalid state");
+
         supplies[index].state = SupplyState(newState);
         emit SupplyStateUpdated(index, SupplyState(newState));
     }

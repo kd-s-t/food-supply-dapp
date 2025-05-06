@@ -22,22 +22,22 @@ type Supply = {
   description: string;
   quantity: string;
   provider: string;
-  addedBy: string;
   state: string;
+  addedBy?: string;
 };
 
 type Props = {
   supplies: Supply[];
+  walletAddress: string | null;
   onAdd: (supply: {
     name: string;
     description: string;
     quantity: number;
     provider: string;
-    addedBy: string;
   }) => Promise<void>;  // Make sure onAdd returns a Promise for loading
 };
 
-export default function SuppliesTable({ supplies, onAdd }: Props) {
+export default function SuppliesTable({ supplies, onAdd, walletAddress }: Props) {
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -100,23 +100,7 @@ export default function SuppliesTable({ supplies, onAdd }: Props) {
           <MenuItem value="Provider B">Provider B</MenuItem>
           <MenuItem value="Provider C">Provider C</MenuItem>
         </Select>
-
-        <Select
-          label="Added By"
-          name="addedBy"
-          value={form.addedBy}
-          onChange={handleChange}
-          fullWidth
-          displayEmpty
-          sx={{ mb: 1 }}
-        >
-          <MenuItem value="">Select Added By</MenuItem>
-          <MenuItem value="Alice">Alice</MenuItem>
-          <MenuItem value="Bob">Bob</MenuItem>
-          <MenuItem value="Charlie">Charlie</MenuItem>
-        </Select>
-
-        <Button variant="contained" onClick={handleSubmit} disabled={loading}>
+        <Button variant="contained" onClick={handleSubmit} disabled={loading || (walletAddress ? false : true)}>
           {loading ? <CircularProgress size={20} /> : 'Add Supply'}
         </Button>
       </Box>

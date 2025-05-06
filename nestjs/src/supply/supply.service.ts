@@ -59,8 +59,11 @@ export class SupplyService {
     provider: string,
     addedBy: string,
   ) {
-    const signer = await this.provider.getSigner(0);
-    const contractWithSigner = this.contract.connect(signer) as ethers.Contract;
+    const wallet = new ethers.Wallet(
+      process.env.PRIVATE_KEY as string,
+      this.provider,
+    );
+    const contractWithSigner = this.contract.connect(wallet);
 
     const tx = await contractWithSigner.addSupply(
       name,
