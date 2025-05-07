@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-contract SupplyChain {
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
+contract SupplyChain is Ownable, ReentrancyGuard {
     enum SupplyState { Created, Sold, Shipped, Delivered }
 
     struct Supply {
@@ -13,28 +16,19 @@ contract SupplyChain {
         SupplyState state;
     }
 
-    address public owner;
     Supply[] public supplies;
 
     event SupplyAdded(string name, string provider, address addedBy);
     event SupplyStateUpdated(uint256 index, SupplyState newState);
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can perform this action");
-        _;
-    }
-
-    constructor() {
-        owner = msg.sender;
-    }
+    constructor() Ownable(msg.sender) {}
 
     function addSupply(
         string memory _name,
         string memory _description,
         uint256 _quantity,
         string memory _provider
-    ) public onlyOwner {
-        // 🔒 Input validations
+    ) public onlyOwner nonReentrant {
         require(bytes(_name).length > 0, "Name cannot be empty");
         require(bytes(_description).length > 0, "Description cannot be empty");
         require(_quantity > 0, "Quantity must be greater than zero");
@@ -46,14 +40,15 @@ contract SupplyChain {
                 _description,
                 _quantity,
                 _provider,
-                tx.origin, // capture the original wallet calling the backend
+                tx.origin,
                 SupplyState.Created
             )
         );
+
         emit SupplyAdded(_name, _provider, tx.origin);
     }
 
-    function updateSupplyState(uint256 index, uint8 newState) public onlyOwner {
+    function updateSupplyState(uint256 index, uint8 newState) public onlyOwner nonReentrant {
         require(index < supplies.length, "Invalid index");
         require(newState <= uint8(SupplyState.Delivered), "Invalid state");
 
