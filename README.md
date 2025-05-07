@@ -49,6 +49,10 @@ npm install
 npm run start:dev
 http://localhost:3001
 ```
+
+Server will run at:
+http://localhost:3001
+
 .env
 ```env
 PORT=3001
@@ -64,8 +68,11 @@ cd nextjs
 nvm use 20
 npm install
 npm run dev
-http://localhost:3000
 ```
+
+Server will run at:
+http://localhost:3000
+
 .env
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3000
