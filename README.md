@@ -92,13 +92,14 @@ cd smart-contracts
 npx hardhat node
 ```
 
-### Run Redis:  
-`brew services start redis`
+### Run Redis: 
+```bash
+brew services start redis
+```
 
 Server will run at:
 http://localhost:6379
 
-<div align="center">
 | Feature |
 |---------|
 | ✅ JWT-based authentication |
@@ -110,4 +111,3 @@ http://localhost:6379
 | ✅ Scalable Redis caching layer to reduce blockchain reads and improve performance |
 | ✅ Loading states, optimistic UI, and user-friendly error handling in frontend |
 | ✅ Clean architecture ready for scaling to testnet/mainnet |
-</div>
