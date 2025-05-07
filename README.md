@@ -1,5 +1,5 @@
-# Food Supply Chain DApp
-A full-stack decentralized application (DApp) for food supply chain management.
+# Food Supply DApp
+A full-stack decentralized application (DApp) for food supply management.
 
 ### Frontend
 <div>
