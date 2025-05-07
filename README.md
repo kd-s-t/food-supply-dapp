@@ -1,19 +1,36 @@
 # Supply Chain DApp
 A full-stack decentralized application (DApp) for supply chain management.
 
+
+### Frontend
 <div align="center">
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
   <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" />
-  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white" />
-  <img src="https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white" />
-  <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white" />
   <img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" />
-  <img src="https://img.shields.io/badge/web3.js-F16822?style=for-the-badge&logo=web3.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" />
+</div>
+
+### Backend
+<div align="center">
+  <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white" />
+</div>
+
+### Smart Contracts
+<div align="center">
+  <img src="https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white" />
+  <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white" />
   <img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white" />
 </div>
+
+### Frontend and backend
+<div align="center">
+  <img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white" />
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/web3.js-F16822?style=for-the-badge&logo=web3.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" />
+</div>
+
 
 ### 🔐 Login
 <img src="./login.png" />
@@ -78,12 +95,15 @@ brew services start redis
 ```
 
 ### Features
-✅ JWT-based authentication
-✅ Next.js + MUI 5 UI  
-✅ Web3.js + Ethers.js integration to interact with smart contracts  
-✅ Modular backend (NestJS v11) and frontend (Next.js 14 App Router)  
-✅ Solidity smart contracts with event emitters for off-chain listening  
-✅ Fully unit tested smart contracts (Hardhat + Mocha + Chai)  
-✅ Scalable Redis caching layer to reduce blockchain reads and improve performance  
-✅ Loading states, optimistic UI, and user-friendly error handling in frontend  
-✅ Clean architecture ready for scaling to testnet/mainnet  
+| Feature |
+|---------|
+| ✅ JWT-based authentication |
+| ✅ Next.js + MUI 5 UI |
+| ✅ Web3.js + Ethers.js integration to interact with smart contracts |
+| ✅ Modular backend (NestJS v11) and frontend (Next.js 14 App Router) |
+| ✅ Solidity smart contracts with event emitters for off-chain listening |
+| ✅ Fully unit tested smart contracts (Hardhat + Mocha + Chai) |
+| ✅ Scalable Redis caching layer to reduce blockchain reads and improve performance |
+| ✅ Loading states, optimistic UI, and user-friendly error handling in frontend |
+| ✅ Clean architecture ready for scaling to testnet/mainnet |
+
