@@ -98,7 +98,7 @@ cd smart-contracts
 npx hardhat node
 ```
 
-### Run Redis: 
+### Run Redis
 ```bash
 brew services start redis
 ```
