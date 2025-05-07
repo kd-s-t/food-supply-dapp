@@ -6,6 +6,7 @@ A full-stack decentralized application (DApp) for food supply management.
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
   <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
   <img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" />
+  <img src="https://img.shields.io/badge/metamask-F6851B?style=for-the-badge&logo=metamask&logoColor=white" />
 </div>
 
 ### Backend
@@ -20,6 +21,8 @@ A full-stack decentralized application (DApp) for food supply management.
   <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" />
   <img src="https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white" />
   <img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white" />
+  <img src="https://img.shields.io/badge/blockchain-blue?style=for-the-badge&logo=blockchain.com&logoColor=white" />
+  <img src="https://img.shields.io/badge/hardhat-FFC107?style=for-the-badge&logo=hardhat&logoColor=black" />
 </div>
 
 ### For all
