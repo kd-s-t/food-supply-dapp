@@ -1,5 +1,6 @@
 # Food Supply DApp
-A full-stack decentralized application (DApp) for food supply management.
+A fully decentralized application (DApp) designed to streamline and secure food supply chain management. It integrates a modern frontend (React, Next.js, MUI, MetaMask) with a powerful backend (NestJS, Redis) and robust smart contracts (Solidity, Hardhat, OpenZeppelin). The app features JWT-based authentication, blockchain-based tracking, and scalable architecture. Complete with unit testing (Jest, Mocha, Chai) and built using TypeScript for full type safety across the stack. Supports real-time interaction with Ethereum smart contracts and includes advanced caching and security best practices.
+
 
 ### Frontend
 <div>
